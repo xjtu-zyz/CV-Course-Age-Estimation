@@ -1,0 +1,27 @@
+# Baseline ViT fine-tune recipe — INTENTIONALLY default-style.
+#
+# This config exists for ablation purposes only. Use configs/vit.yaml for the
+# real fine-tune (LLRD + warmup + smaller wd, see commit 605c112).
+#
+# Differences vs configs/vit.yaml (= "new" recipe):
+#   - lr: 5e-5 (flat across all params; no LLRD)
+#   - weight_decay: 0.05 (vs 0.01)
+#   - scheduler: plain cosine to eta_min=0 (no warmup)
+#
+# Now equalised to 50 epochs to remove the budget-asymmetry confound from the
+# earlier 25-epoch baseline run (per user request, 2026-05-28).
+model: vit_b_16
+pretrained: true
+epochs: 50
+batch_size: 16
+lr: 5.0e-5
+weight_decay: 0.05
+optimizer: adamw
+loss: l1
+# Note: NO `llrd` key here — build_optimizer falls back to flat-lr param-groups.
+scheduler:
+  name: cosine
+  t_max: 50
+img_size: 224
+num_workers: 4
+seed: 42

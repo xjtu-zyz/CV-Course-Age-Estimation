@@ -31,6 +31,9 @@ _BUILDERS = {
     "densenet121": _build_densenet,
     "vit": _build_vit_b_16,
     "vit_b_16": _build_vit_b_16,
+    # `vit_baseline` is the same backbone but reads configs/vit_baseline.yaml
+    # (different fine-tune recipe) and writes results to results/vit_baseline/.
+    "vit_baseline": _build_vit_b_16,
 }
 
 

@@ -18,7 +18,7 @@ def parse_args() -> argparse.Namespace:
         description="Age estimation on APPA-REAL (DenseNet + ViT)"
     )
     parser.add_argument(
-        "--model", choices=["densenet", "vit"], required=True,
+        "--model", choices=["densenet", "vit", "vit_baseline"], required=True,
         help="Which model pipeline to run.",
     )
     parser.add_argument(
